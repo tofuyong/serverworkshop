@@ -15,12 +15,13 @@ public class Cookie {
 
     List<String> cookieItems = null;
     
-    public void readCookieFile() throws FileNotFoundException {
+    public void readCookieFile() throws IOException, FileNotFoundException {
         cookieItems = new ArrayList<String>();
 
         File file = new File(dirPath + File.separator + fileName);
         
-        BufferedReader br = new BufferedReader(new FileReader(file));
+        FileReader fr = new FileReader(file);
+        BufferedReader br = new BufferedReader(fr);
 
         String readString;
 
@@ -30,6 +31,9 @@ public class Cookie {
             }
         } catch (IOException e){
             e.printStackTrace();
+        } finally {
+            br.close();
+            fr.close();
         }
     }
 
@@ -43,7 +47,7 @@ public class Cookie {
     }
 
     public void showCookies() {
-        if (cookieItems !=null) {
+        if (cookieItems != null) {
             cookieItems.forEach(ci -> System.out.println(ci));
             // Alternative method to print our all cookies using enhanced for loop
             // for(String s : cookieItems){
