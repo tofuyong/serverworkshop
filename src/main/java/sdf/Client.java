@@ -14,7 +14,7 @@ import java.net.UnknownHostException;
 
 public class Client {
     public static void main(String[] args) throws UnknownHostException, IOException {
-        Socket clientConn = new Socket("localhost", 12345); 
+        Socket clientConn = new Socket("", 12345); 
         System.out.println("Connected to server on localhost:12345");
 
         try(OutputStream os = clientConn.getOutputStream()){
